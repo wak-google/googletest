@@ -4884,7 +4884,18 @@ class TestCaseNameIs {
 
   // Returns true iff the name of test_case matches name_.
   bool operator()(const TestCase* test_case) const {
-    return test_case != NULL && strcmp(test_case->name(), name_.c_str()) == 0;
+    if (test_case == NULL)
+      return false;
+    fprintf(stderr, "Got here");
+    fprintf(stderr, "arg name p: %p\n", &test_case->name_str());
+    fprintf(stderr, "arg name len: %lu\n", test_case->name_str().size());
+    fprintf(stderr, "arg name: %s\n", test_case->name_str().c_str());
+    fprintf(stderr, "arg name2: %s\n", test_case->name());
+    fprintf(stderr, "name p: %p\n", &name_);
+    fprintf(stderr, "name len: %lu\n", name_.size());
+    fprintf(stderr, "name: %s\n", name_.c_str());
+    return strcmp(test_case->name(), name_.c_str()) == 0;
+    //return test_case->name() == name_;
   }
 
  private:

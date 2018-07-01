@@ -826,6 +826,7 @@ class GTEST_API_ TestCase {
   virtual ~TestCase();
 
   // Gets the name of the TestCase.
+  const std::string &name_str() const { return name_; }
   const char* name() const { return name_.c_str(); }
 
   // Returns the name of the parameter type, or NULL if this is not a
